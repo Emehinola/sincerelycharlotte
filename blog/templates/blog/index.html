@@ -1,0 +1,396 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/index.css' %}" />
+    <link  type="text/css" rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'blog/css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/vendors/owl-carousel/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/vendors/nice-select/css/nice-select.css' %}" />
+    <!-- main css -->
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'blog/css/single-blog.css' %}" />
+    <script src="{% static 'user/js/jquery-3.2.1.min.js' %}"></script>
+    <!--===============================================================================================-->
+    <script src="{% static 'user/js/main.js' %}"></script>
+    <script src="{% static 'user/js/jquery.ajaxchimp.min.js' %}"></script>
+    <style type="text/css">
+        .about-post{
+            display: block;
+        }
+    </style>
+    
+</head>
+<body>
+    <header class="header_area">
+        <div class="main_menu">
+  
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <a class="navbar-brand logo_h" href="index.html"
+                ><img src="{% static 'blog/images/logo.png' %}" alt=""
+              /></a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div
+                class="collapse navbar-collapse offset"
+                id="navbarSupportedContent"
+              >
+                <ul class="nav navbar-nav menu_nav ml-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">About</a>
+                  </li>
+                  {% if user.is_superuser %}
+                  <li class="nav-item submenu dropdown">
+                    <a
+                      href="#"
+                      class="nav-link dropdown-toggle"
+                      data-toggle="dropdown"
+                      role="button"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                      >Admin actions</a
+                    >
+                    <ul class="dropdown-menu">
+                      <li class="nav-item">
+                        <a class="nav-link" href="/admin/">Admin dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/admin/blog/blog/"
+                          >View posts</a
+                        >
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/admin/user/user/">View registered users</a>
+                      </li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Create new account</a>
+                  </li>
+                  {% else %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Create account</a>
+                  </li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  </li>
+                  {% else %}
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+    <div class="header-banner" style="background-image: url({% static 'blog/images/home-banner.jpg' %})">
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar">
+                    <div class="category text-center" style="width: 100%; float: left">
+                        <span class="title">Categories:</span>
+                        <br>
+                        <div class="category-item">
+                            
+                                <a href="/category/Politics" class="grouped">Politics</a>
+                                |
+                               
+                                    <a href="/category/Education" class="grouped">Education</a>
+                                |
+                                <a href="/category/Entertaiment" class="grouped">Entertaiment</a>
+                                |
+                                
+                                    <a href="/category/Sports" class="grouped">Sports</a>
+                                |
+                                
+                                    <a href="/category/Health" class="grouped">Health</a>
+                                |
+                                
+                                    <a href="/category/Religion" class="grouped">Religion</a>
+                                |
+                                
+                                    <a href="/category/LoveAndRelationship" class="grouped">Love and Relationship</a>
+                                 |
+                                
+                                    <a href="/category/Foods" class="grouped">Food and kitchen</a>
+                                |
+                               
+                                    <a href="/category/Gossip" class="grouped">Gossip</a>
+                                 |
+                                
+                                    <a href="/category/Beauty" class="grouped">Beauty</a>
+                                 |
+                                
+                                    <a href="/category/Fashion" class="grouped">Fashion</a>
+                                 |
+                                
+                                    <a href="/category/Technology" class="grouped">Technology</a>
+                                |
+                                
+                                    <a href="/category/Book" class="grouped">Book</a>
+                               
+                        </div>
+                        <div class="row main-items">
+                            <div class="col-lg-4 col-md-4 col-sm-12 bold-writing text-center" style="color: #267085; font-style: italic">
+                                <div class="title" style="width: auto; float: left;">THOUGHT FOR TODAY...</div><br><br><span style="color: brown">{{thought.thought|linebreaks}}</span>
+                                
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 right-items">
+                                <div class="title">HOT UPDATES</div><hr>
+                                <div class="row">
+                                {% for update in hot %}
+                                    <div class="col-lg-4 col-md-4 col-sm-12">
+                                        <div class="card">
+                                            <img class="card-img-top" src="{{update.image.url}}" alt="pix" >
+                                            <div class="card-body">
+                                                <h4 class="card-title">
+                                                    <a href="/posts/{{update.id}}">{{update.title|truncatechars:50}}</a>
+                                                </h4>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 left-items">
+                <div class="title">MOSTLY READ</div>
+                <ul>
+                {% for post in blogs %}
+                    <li class="mostly-read"><a href="/posts/{{post.id}}">{{post.title}}</a><hr></li>
+                {% endfor %}
+                </ul>
+                <div class="news-letter">
+                    <div class="title" style="width: auto; float: left;">NEWS LETTER SUBSCRIPTION</div><br><br>
+                    <div class="about" style="color: brown;">Subscribe to our newsletter to get notifications from us whenever we post new updates</div>
+                    <div class="form-group">
+                        <form action="" method="POST">
+                            <input type="email" placeholder="Email address here" class="input-field"><br>
+                            <button class="btn btn-primary email-sub">Subcribe</button> 
+                        </form>
+                    </div>
+                </div>
+                <div class="news-letter">
+                    <div class="title" style="width: auto; float: left;">QUICK LINKS</div><br><br>
+                    <div class="about" style="color: brown;">We appreciate your time and love in helping us grow this platform. Browse through different pages of this website using the quick links provided below:</div>
+                    <div class="links-group">
+                        <ul>
+                            <li class="quick-link"><a href="{% url 'home' %}">Home</a></li><hr>
+                            {% if user.is_authenticated %}<li class="quick-link"><a href="{% url 'logout' %}">logout</a></li><hr>
+                            <li class="quick-link"><a href="{% url 'register' %}">Create new account</a></li><hr>
+                            {% else %}
+                                <li class="quick-link"><a href="{% url 'register' %}">Create account</a></li><hr>
+                                <li class="quick-link"><a href="{% url 'login' %}">Login</a></li><hr>
+                            {% endif %}
+                            <li class="quick-link"><a href="#">Contact us</a></li><hr>
+                            <li class="quick-link"><a href="#">About SincerelyCharlotte.</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        <div class="col-lg-9" col-md-9 col-sm-12 col-xs-12>
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 news-letter">
+                <div class="title" style="width: auto; float: left;">About</div><br><br>
+                <div class="about">Read about SincerelyCharlotte.</div>
+                <div>
+                    "" In the beggining, God created heavens and the earth and everything that lives there in . In the beggining, God created heavens and the earth and everything that lives there in . So for this reason; he deserves to be honoured In the beggining, God created heavens and the earth and everything that lives there in"""
+                </div><br><br>
+                <div class="title" style="width: auto; float: left;">Follow us on</div><br><br>
+                <div class="about">You can follow us any of these media</div>
+                <div class="text-left">
+                    <ul>
+                        <li style="margin-left: 20px;">
+                            <a href="https://facebook.com/groups/310201146887718" style="color: blue"><i class="fa fa-facebook fa-2x"></i></a>
+                        </li>
+                        <li style="margin-left: 20px">
+                            <a href="https://wa.me/+2348131615393" style="color: greenyellow"><i class="fa fa-whatsapp fa-2x"></i></a>
+                        </li>
+                        <li style="margin-left: 20px;">
+                            <a href="" style="color: white"><i class="fa fa-twitter fa-2x"></i></a>
+                        </li>
+                    </ul>
+                </div><br>
+                <div class="title" style="width: auto; float: left;">NEWS LETTER SUBSCRIPTION</div><br><br>
+                <div class="about">Subscribe to our newsletter to get notifications from us whenever we post new updates</div>
+                <div class="form-group">
+                    <form action="" method="POST">
+                        <input type="email" disabled placeholder="Email address here" class="input-field"><br>
+                        <button class="btn btn-primary email-sub" disabled>Subcribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 news-letter">
+                <div class="title" style="width: auto; float: left;">QUICK LINKS</div><br><br>
+                <div class="about">We appreciate your time and love in helping us grow this platform. Browse through different pages of this website using the quick links provided below:</div>
+                <div class="links-group">
+                    <ul>
+                            <li class="quick-link"><a href="{% url 'home' %}">Home</a></li><hr>
+                            {% if user.is_authenticated %}<li class="quick-link"><a href="{% url 'logout' %}">logout</a></li><hr>
+                            <li class="quick-link"><a href="{% url 'register' %}">Create new account</a></li><hr>
+                            {% else %}
+                                <li class="quick-link"><a href="{% url 'register' %}">Create account</a></li><hr>
+                                <li class="quick-link"><a href="{% url 'login' %}">Login</a></li><hr>
+                            {% endif %}
+                            <li class="quick-link"><a href="#">Contact us</a></li><hr>
+                            <li class="quick-link"><a href="#">About SincerelyCharlotte.</a></li>
+                        </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 news-letter">
+                <div class="title" style="width: auto; float: left;">ABOUT THE DIRECTOR</div><br><br>
+                <div class="about">We appreciate your time and love in helping us grow this platform. Browse through different pages of this website using the quick links provided below:</div><hr>
+                <div class="about-director">
+                    <img src="{% static 'blog/images/img1.jpg' %}" height="200px" width="200px" class="img img-circle" style="margin-left: 22%;">
+                   <p>My name is Aladi Perpetual. A lover of deep thought. I love to write alot, i write on different things ranging from
+                   relationships, food, novels and many more.</p>
+                   <p>
+                   My major profession is catering</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; color: brown;">copyright &copy;<script>document.write(new Date().getFullYear());</script> SincerelyCharlotte. All rights reserved<span style="color: black;"> | </span>logged in user: <span style="color: white;">{{user}}</span></div>
+        </div>
+    </div>
+    <script src="{% static 'blog/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'blog/js/popper.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'blog/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'blog/js/owl-carousel-thumb.min.js' %}"></script>
+    <script src="{% static 'blog/js/owl-carousel-thumb.min.js' %}"></script>
+    <script src="{% static 'blog/js/mail-script.js' %}"></script>
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="{% static 'blog/js/gmaps.min.js' %}"></script>
+    <script src="{% static 'blog/js/theme.js' %}"></script>
+    <script src="{% static 'user/js/jquery.ajaxchimp.min.js' %}"></script>
+
+    <script type="text/javascript">
+        (
+            function($){
+                'use strict';
+
+                $('.like').each(
+                    function(){
+                        // $(this).css({'color': 'red'})
+                        var post_id = $(this).data('id');
+                        var color = document.getElementById(post_id);
+                        
+
+                        if(
+                            $(this).data('action') == 'like'
+                        ){
+                            console.log("yea");
+                        }
+                        
+                        // ajax request
+                        $.ajax({
+                            url: '/posts/fetch/',
+                            headers: {
+                                'Content-Type': 'apllication/json'
+                            },
+                            type: 'GET',
+                            datatype: 'json',
+                            data: {
+                                'post_id': post_id
+                            },
+                            success:
+                                function(data){
+                                    if(data.liked == true){
+                                        color.style.color = 'red'; // changing the color to red
+                                        color.dataset.action = 'unlike';
+                                        color.textContent = data.number;
+                                    }
+                                    else{
+                                        color.textContent = data.number;
+                                    }
+                                    
+                                }
+                        })
+
+                    }
+                )
+
+                var clicked = [];
+                
+                $('.like').click(function(){
+                                        var post_id = $(this).data('id');
+                                        var action = $(this).data('action');
+                                        var style = $(this).css('color');
+                                        clicked.push(post_id)
+                                        
+                                        console.log("like clicked", post_id, style);
+                                        if ($(this).data('action') == 'like') {
+                                            $(this).css({'color': 'red'})
+                                            var color = document.getElementById(post_id);
+                                            color.textContent = parseInt(color.textContent) + 1
+                                        }
+
+                                        $.ajax({
+                                            url: '/posts/like/',
+                                            header: {
+                                                'Content-Type': 'application/json'
+                                                },
+                                            type: 'GET',
+                                            datatype: 'json',
+                                            data: {
+                                                'action': action,
+                                                'post_id': post_id
+                                            },
+                                            success:
+                                                function(data){
+                                                    console.log(data.action)
+                                            }
+                                        })
+                                        
+                                    })
+            }
+        )(jQuery)
+</script>
+    
+</body>
+</html>

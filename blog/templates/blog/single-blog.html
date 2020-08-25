@@ -1,0 +1,89 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="title" style="width: auto; float: left;">DETAILED POST</div><br><br>
+                        <h4 class="blog-title">{{post.title|linebreaks}}</h4>
+                        <img src="{{ post.image.url }}" alt="image" width="100%" class="blog-image">
+                        <p>{{post.body|linebreaks}}</p>
+                        <div style="background-color: #d2d9d4; width: 50px; border-radius: 10px; text-align: center"><span class="bottom-items marked"><i class="fa fa-thumbs-o-up like" data-id="{{post.id}}" data-action="like" id="{{post.id}}"></i> </div>
+                            {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}" style="color: green">Login to like</a>
+                            {% endif %}
+                        <div class="blog-bottom">
+                            <ul>
+                                <li class="about-post">Category: <span class="value">{{post.category}}</span></li>
+                                <li class="about-post">Author: <span class="value">{{post.author}}</span></li>
+                                <li class="about-post">Date posted: <span class="value">{{post.time}}</span></li>
+                                <li class="about-post">Comments: <span class="value">1k</span></li>
+                                </ul>
+                        </div> 
+                        <hr>
+                        <div class="discussion">
+                            <div class="title mt-5">Your thought</div>
+                            <div class="form-group">
+                            <form method="POST" action="">
+                                {% csrf_token %}
+                                {% if not user.is_authenticated %}
+                                    <div class="input-wrapper"><input type="text" name="userEmail" class="input-field" placeholder="Your email address here..."></div>
+                                    <div class="input-wrapper"><textarea name="content" placeholder="Write your thought on the post..." id="comment" class="input-field"></textarea></div>
+                                    {% else %}
+                                        <div class="input-wrapper"><input type="text" name="userEmail" class="input-field" placeholder="Your email address here..."></div>
+                                        <div class="input-wrapper"><textarea name="content" placeholder="Write your thought on the post..." id="comment" class="input-field"></textarea></div>
+                                {% endif %}
+                                <button type="submit" class="btn bnt-primary done">Submit thought</button>
+                            </form>
+                            </div>
+                        </div>
+                        <div class="title mt-5">Discussions</div>
+                        <div class="comments-list">
+                        {% for comment in comments %}
+                            <div class="row comment-card" style="margin-top: 10px">
+                                <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                                    <img src="{% static 'blog/images/avatar.jpg' %}" height="50px" width="50px" class="img img-circle">
+                                </div>
+                                {% if comment.author == None %}
+                                <div class="col-lg-11 col-md-11 col-sm-9 col-xs-9">
+                                    <span class="author" style="color: brown">{{comment.userEmail}}</span>
+                                    <p class="comment" style="color: brown"><span>{{comment.content|linebreaks}}</span></p>
+                                </div>
+                                    {% else %}
+                                    <div class="col-lg-11 col-md-11 col-sm-9 col-xs-9">
+                                        <span class="author" style="color: brown">{{comment.author}}</span>
+                                        <p class="comment" style="color: brown"><span>{{comment.content|linebreaks}}</span></p>
+                                    </div>
+                                {% endif %}
+                                
+                            </div>
+                            <hr>
+                        {% endfor %}
+                        </div></div>
+                        
+                        <script type="text/javascript">
+                            (
+                                function($){
+                                    'use strict';
+                                    $('.done').click(function(){
+                                        var comment = $('#comment').val();
+                                        console.log(comment);
+
+                                        $.ajax({
+                                            url: '',
+                                            header: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            type: 'GET',
+                                            datatype: 'json',
+                                            data: {
+                                                'comment': comment,
+                                                'email': email
+                                            }
+                                        })
+                                    })
+                                }
+                            )(jQuery)
+                        </script>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f456657e0e66c86"></script>
+
+{% endblock content %}

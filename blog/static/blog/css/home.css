@@ -1,0 +1,38 @@
+
+.header{
+    background-color: yellowgreen;
+    height: auto;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.list-item{
+    padding-top: 10px;
+    text-decoration: none;
+    list-style-type: none;
+    word-spacing: 50px;
+    float: right;
+}
+
+.list-type{
+    font-weight: bold;
+    color: white;
+}
+
+li{
+    display: inline;
+}
+
+.item{
+    color: white;
+    font-size: large;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.category-header{
+    background-color: cornflowerblue;
+}

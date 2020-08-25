@@ -1,0 +1,75 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="title">{{title}}</div>
+            <div class="row">
+            {% for post in posts %}
+                <div class="col-lg-6 col-md-8 col-sm-12 blog-items">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <ul>
+                                    <li class="about-post">Category: <span class="value">{{post.category}}</span></li>
+                                    <li class="about-post">Author: <span class="value">{{post.author}}</span></li>
+                                    <li class="about-post">Date posted: <span class="value">{{post.time}}</span></li>
+                                    <li class="about-post">Comments: <span class="value">1k</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12">
+                                <div class="blog-view">
+                                    <h4 class="blog-title" style="font-size: 15px"><a href="/posts/{{post.id}}">{{post.title|linebreaks}}</a></h4>
+                                    <img src="{{post.image.url}}" height="240px" width="100%" alt="image">
+                                    
+                                    <p class="blog-body">{{post.body|linebreaks|truncatechars:50}}
+                                    <a href="/posts/{{post.id}}">Read more</a>
+                                    <div style="background-color: #d2d9d4; width: 50px; border-radius: 10px; text-align: center"><span class="bottom-items marked"><i class="fa fa-thumbs-o-up like" data-id="{{post.id}}" data-action="like" id="{{post.id}}"></i> </div>
+                            {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}" style="color: green">Login to like</a>
+                            {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        
+            </div>
+        </div>
+
+        {% comment %} javascript, jQuery and ajax request codes here {% endcomment %}
+
+        <script type="text/javascript">
+                            (
+                                function($){
+                                    'use strict';
+                                    
+                                    $('.like').click(function(){
+                                        var post_id = $(this).data('id');
+                                        var action = $(this).data('action');
+                                        var style = $(this).css('color');
+                                        console.log("like clicked", post_id, style);
+
+                                        $.ajax({
+                                            url: '/posts/like/',
+                                            header: {
+                                                'Content-Type': 'application/json'
+                                                },
+                                            type: 'GET',
+                                            datatype: 'json',
+                                            data: {
+                                                'action': action,
+                                                'post_id': post_id
+                                            },
+                                            success:
+                                                function(data){
+                                                    console.log(data.action)
+                                            }
+                                        })
+                                        
+                                    })
+                                }
+                            )(jQuery)
+        </script>
+{% endblock content %}

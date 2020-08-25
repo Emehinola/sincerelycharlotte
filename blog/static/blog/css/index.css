@@ -1,0 +1,159 @@
+body{
+    margin-right: 10px;
+}
+
+.header-banner{
+    background-image: url(images/home-banner.jpg);
+}
+
+.category{
+    align-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+    margin-top: 50px;
+}
+
+li{
+    list-style-type: square;
+    display: inline;
+}
+
+a:hover{
+    cursor: pointer;
+}
+
+.category-item{
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.main-items{
+    margin-top: 90px;
+}
+
+.bold-writing{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.right-items{
+    margin-top: 90px;
+}
+
+.title{
+    font-weight: bold;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    border-color: red;
+    width: 100px;
+    padding-bottom: 8px;
+}
+
+.card{
+    background-color: crimson;
+    transition: width 0.4s, height 0.4s ease-in-out;
+    width: 250px;
+    color: white;
+}
+
+.card a{
+    color: aqua;
+}
+
+.card-text{
+    font-size: small;
+}
+
+.card-img-top{
+    height: 200px;
+    width: 250px;
+}
+
+.card:hover{
+    border-radius: 3px;
+    box-shadow: black 3px 3px 3px 3px;
+}
+
+.about-post{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    display: block;
+}
+
+.value{
+    font-weight: 100;
+    color: red;
+}
+
+.mostly-read{
+    margin-left: 0px;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+    margin-left: -42px;
+}
+
+.blog-body{
+    color: black;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+}
+
+.blog-title{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #0e2450;
+}
+
+.footer{
+    background-color: #336699;
+    margin-top: 100px;
+}
+
+.bottom-items{
+    font-size: 20px;
+}
+
+.bottom-item-type{
+    color: brown;
+}
+
+.input-field{
+    display: block;
+}
+
+.btn{
+    display: block;
+}
+
+.about{
+    color: white;
+}
+
+.form-group{
+    margin-top: 10px;
+}
+
+.quick-link a{
+    color: brown;
+    display: block;
+    font-size: 16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.about-director{
+    color: pink;
+}
+
+@media only screen and (max-width:769px){
+    .right-items{
+        display: none;
+    }
+    .left-items{
+        display: none;
+    }
+}

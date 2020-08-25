@@ -1,0 +1,93 @@
+{% extends "blog/index.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="title">LATEST UPDATES</div>
+            <div class="row">
+            {% for post in blogs %}
+                <div class="col-lg-6 col-md-8 col-sm-12 blog-items">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <ul>
+                                    <li class="about-post">Category: <span class="value">{{post.category}}</span></li>
+                                    <li class="about-post">Author: <span class="value">{{post.author}}</span></li>
+                                    <li class="about-post">Date posted: <span class="value">{{post.time}}</span></li>
+                                    <li class="about-post">Comments: <span class="value">1k</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <div class="blog-view">
+                                    <h4 class="blog-title" style="font-size: 15px"><a href="/posts/{{post.id}}">{{post.title|linebreaks}}</a></h4>
+                                    <img src="{{post.image.url}}" height="240px" width="100%" alt="image">
+                                    
+                                    <p class="blog-body">{{post.body|linebreaks|truncatechars:50}}
+                                    <a href="/posts/{{post.id}}">Read more</a>
+                                    </p>
+                                    <div style="background-color: #d2d9d4; width: 50px; border-radius: 10px; text-align: center;"><span class="bottom-items marked"><i class="fa fa-thumbs-o-up like" data-id="{{post.id}}" data-action="like" id="{{post.id}}"></i></span> </div>             {% if not user.is_authenticated %}
+                                        <a href="{% url 'login' %}" style="color: green">Login to like</a>
+                                    {% endif %}
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if page_obj.has_other_pages %}
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                  <li class="page-item">
+                                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-left"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                  <li class="page-item">
+                                    <a href="#" class="page-link disabled" aria-label="Previous">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-left"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                {% endif %}
+
+                                {% for i in page_obj.paginator.page_range %}
+                                  {% if page_obj.number == i %}
+                                	  <li class="page-item active"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+								                  {% else %}
+									                  <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+								                  {% endif %}
+								                {% endfor %}
+
+								                {% if page_obj.has_next %}
+                                  <li class="page-item">
+                                    <a href="?page={{ page_obj.next_page_number }}" class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-right"></i>
+                                        </span>
+                                    </a>
+                                  </li>
+								                {% else %}
+									              <li class="page-item disabled">
+                                    <a href="#" class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-right"></i>
+                                        </span>
+                                    </a>
+                                </li>
+								                {% endif %}
+                            </ul>
+                        </nav>
+                      {% endif %}
+        </div>
+
+        {% comment %} javascript, jQuery and ajax request codes here {% endcomment %}
+
+        
+{% endblock content %}
