@@ -4,7 +4,7 @@
 {% block content %}
 <div class="title" style="width: auto; float: left;">DETAILED POST</div><br><br>
                         <h4 class="blog-title">{{post.title|linebreaks}}</h4>
-                        <img src="{{ post.image.url }}" alt="image" width="100%" class="blog-image">
+                        <img src="{{ post.image.url }}" style="width: 100%;" alt="image" class="blog-image">
                         <p>{{post.body|linebreaks}}</p>
                         <div style="background-color: #d2d9d4; width: 50px; border-radius: 10px; text-align: center"><span class="bottom-items marked"><i class="fa fa-thumbs-o-up like" data-id="{{post.id}}" data-action="like" id="{{post.id}}"></i> </div>
                             {% if not user.is_authenticated %}
