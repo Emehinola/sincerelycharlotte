@@ -29,9 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['.*']
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
-
 
 # Application definition
 
