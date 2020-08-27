@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static 'user/images/icons/favicon.ico' %}"/>
+	<link rel="icon" type="image/png" href="{% static 'blog/images/logo.png' %}"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'user/vendor/bootstrap/css/bootstrap.min.css' %}">
 <!--===============================================================================================-->
@@ -93,11 +93,11 @@
 						</a>
 						<br>
 						<span class="txt1" style="color: red">
-							Forgotten password?
+							Back to homepage
 						</span>
 
-						<a class="txt2" href="#" style="color: blue">
-							<u>Recover here</u>
+						<a class="txt2" href="{% url 'home' %}" style="color: blue">
+							<u>Clich here</u>
 						</a>
 					</div>
 				</form>

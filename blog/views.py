@@ -15,8 +15,8 @@ def index(request):
     thought = None
     likes = None
     try:
-        likes = Like.objects.filter(author=request.user) # getting blog post likes
         thought = DailyThought.objects.all()[0]
+        likes = Like.objects.filter(author=request.user) # getting blog post likes
     except:
         pass
     
